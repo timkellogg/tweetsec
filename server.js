@@ -5,8 +5,7 @@ var express = require('express'),
     Credentials = require('./secrets').Credentials,
     Twit = require('twit'),
     Bot = require('./lib/tweetsec.js'),
-    username = '@howsmypassword',
-    appDir = path.dirname(require.main.filename);
+    username = '@howsmypassword';
 
 var TwitterClient = new Twit({
   consumer_key: Credentials.consumerKey,
@@ -21,15 +20,25 @@ stream.on('tweet', function(res) {
 
   var userId = res.user.id;
 
-  var userName = res.user.name;
+  var screenName = '@' + res.user.screen_name;
 
   var tweet = res.text.replace(username, '');
 
-  var assessment = Bot.assessPassword(tweet);
+  Bot.assessPassword(tweet)
+    .then(function(assessment) {
+      return Bot.buildResponse(assessment, screenName);
+    })
+    .then(function(response) {
 
-  Bot.tweetResponse(assessment);
+      TwitterClient.post('statuses/update', { status: screenName + ':' + response }, function(err, data, response) {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log('successfully sent!');
+        }
+      });
 
-  // TwitterClient.post('') to user with matching id the password response 
+    });
 
 });
 
