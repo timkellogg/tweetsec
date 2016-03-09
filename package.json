@@ -16,10 +16,8 @@
     "password"
   ],
   "dependencies": {
-    "bluebird": "^3.3.4",
     "express": "^4.13.3",
     "path": "^0.12.7",
-    "rsvp": "^3.2.1",
     "twit": "^2.2.3"
   }
 }
