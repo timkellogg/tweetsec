@@ -1,0 +1,25 @@
+{
+  "name": "tweetsec",
+  "version": "0.1.0",
+  "description": "Coding challenge for Fliper",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "debug": "node-debug server.js"
+  },
+  "author": "Tim Kellogg",
+  "license": "MIT",
+  "devDependencies": {},
+  "keywords": [
+    "Twitter",
+    "bot",
+    "password"
+  ],
+  "dependencies": {
+    "bluebird": "^3.3.4",
+    "express": "^4.13.3",
+    "path": "^0.12.7",
+    "rsvp": "^3.2.1",
+    "twit": "^2.2.3"
+  }
+}
