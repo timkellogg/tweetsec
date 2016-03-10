@@ -35,40 +35,44 @@ stream.on('tweet', function(res) {
 
   var tweet = res.text.replace(username, '');
 
+  // Catch response tweets so it doesn't send to itself
+
+  if (tweet.includes('Rating')) {
+
+    console.log('caught this ' + tweet);
+
+    return false;
+
+  }
+
   Bot.assessPassword(tweet)
 
     .then(function(assessment) {
 
-      return Bot.buildResponse(assessment, screenName);
+      var response = Bot.buildResponse(assessment, screenName);
 
-    })
+      TwitterClient.post('statuses/update', { status: screenName + ': ' + response }, function(err, data, response) {
 
-    .then(function(response) {
+        if (err) {
 
-      console.log('response: ' + response);
+          console.error(err);
 
-      // TwitterClient.post('statuses/update', { status: screenName + ':' + response }, function(err, data, response) {
-      // 
-      //   if (err) {
-      // 
-      //     console.error(err);
-      // 
-      //   } else {
-      // 
-      //     console.log('successfully sent!');
-      // 
-      //   }
-      // 
-      // });
+        } else {
+
+          console.log('successfully sent!');
+
+        }
+
+      });
 
     }).catch(function(err) {
 
       console.error(err);
 
-      // TwitterClient.post('statuses/update', { status: screenName + ':' + 'try again. What do you think I am, Einstein?' }, function(err, data, response) {
-      //   
-      // });
-      
+      TwitterClient.post('statuses/update', { status: screenName + ':' + 'try again. What do you think I am, Einstein?' }, function(err, data, response) {
+
+      });
+
     });
 
 });
@@ -93,7 +97,7 @@ stream.on('warning', function(warning) {
 
 stream.on('message', function(msg) {
 
-  console.log('streaming: ' + msg);
+  console.log('streaming...');
 
 });
 
