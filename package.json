@@ -4,7 +4,7 @@
   "description": "Coding challenge for Fliper",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "debug": "node-debug server.js"
   },
   "author": "Tim Kellogg",
