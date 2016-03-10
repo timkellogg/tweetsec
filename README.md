@@ -10,6 +10,10 @@ _Tweetsec is a Twitter Bot build with Node.js that listens for tweets made to @h
 
 _It is built to be fast and responsive to tweets. It uses a persistent stream that will reconnect to Twitter whenever it loses connection. It also is fully non-blocking so it can theoretically handle many tweets at the same time (even if that is very unlikely!)._
 
+## Try it out!
+
+Tweet at @howsmypassword to check your password strength!
+
 ##  Setup
 
 * `git clone` this file
