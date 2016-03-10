@@ -8,17 +8,24 @@ var express = require('express'),
     username = '@howsmypassword';
 
 var TwitterClient = new Twit({
+
   consumer_key: Credentials.consumerKey,
+
   consumer_secret: Credentials.consumerSecret,
+
   access_token: Credentials.accessToken,
+
   access_token_secret: Credentials.accessTokenSecret,
+
 });
 
 var stream = TwitterClient.stream('statuses/filter', { track: username });
 
 stream.on('connect', function (request) {
+
   console.log('connected');
-})
+
+});
 
 stream.on('tweet', function(res) {
 
