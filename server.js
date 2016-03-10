@@ -54,6 +54,14 @@ stream.on('tweet', function(res) {
       // 
       // });
 
+    }).catch(function(err) {
+
+      console.error(err);
+
+      // TwitterClient.post('statuses/update', { status: screenName + ':' + 'try again. What do you think I am, Einstein?' }, function(err, data, response) {
+      //   
+      // });
+      
     });
 
 });
