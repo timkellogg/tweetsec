@@ -26,10 +26,10 @@ Tweet at @howsmypassword to check your password strength!
 
 ``
 exports.Credentials = {
-  consumerKey: '0QxIahFrRJ5DtWGcyUYdWXJFx',
-  consumerSecret: 'fPvQ4sXWmKFAHNa7x3ixw1wDbSwSCHEykYZv8jpUwQLhxSSiEf',
-  accessToken: '707333726464712704-z5a32ubw4shRLe47PYF4DN5XnGooHBN',
-  accessTokenSecret: 'UzxtYIxMQ3jyPNRRbjct7VeVGS0skbSmPlemyfjgvZYBI',
+  consumerKey: KEY,
+  consumerSecret: SECRET,
+  accessToken: TOKEN,
+  accessTokenSecret: 'TOKEN SECRET,
 };
 ``
 
