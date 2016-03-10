@@ -25,23 +25,37 @@ stream.on('tweet', function(res) {
   var tweet = res.text.replace(username, '');
 
   Bot.assessPassword(tweet)
+
     .then(function(assessment) {
+
       return Bot.buildResponse(assessment, screenName);
+
     })
+
     .then(function(response) {
 
-      TwitterClient.post('statuses/update', { status: screenName + ':' + response }, function(err, data, response) {
-        if (err) {
-          console.error(err);
-        } else {
-          console.log('successfully sent!');
-        }
-      });
+      console.log('response: ' + response);
+
+      // TwitterClient.post('statuses/update', { status: screenName + ':' + response }, function(err, data, response) {
+      // 
+      //   if (err) {
+      // 
+      //     console.error(err);
+      // 
+      //   } else {
+      // 
+      //     console.log('successfully sent!');
+      // 
+      //   }
+      // 
+      // });
 
     });
 
 });
 
 app.listen(port, function() {
+
   console.log('node up on ' + port);
+
 });
