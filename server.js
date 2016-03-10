@@ -16,6 +16,10 @@ var TwitterClient = new Twit({
 
 var stream = TwitterClient.stream('statuses/filter', { track: username });
 
+stream.on('connect', function (request) {
+  console.log('connected');
+})
+
 stream.on('tweet', function(res) {
 
   var userId = res.user.id;
@@ -51,6 +55,30 @@ stream.on('tweet', function(res) {
       // });
 
     });
+
+});
+
+stream.on('disconnect', function(val) {
+
+  console.log('disconnected');
+
+});
+
+stream.on('reconnect', function(request, response, connectInterval) {
+
+  console.log('reconnecting...');
+
+});
+
+stream.on('warning', function(warning) {
+
+  console.log('Twitter Warning: ' + warning);
+
+});
+
+stream.on('message', function(msg) {
+
+  console.log('streaming: ' + msg);
 
 });
 
