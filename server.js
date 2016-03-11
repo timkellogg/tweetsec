@@ -2,22 +2,43 @@ var express = require('express'),
     path = require('path'),
     app = express(),
     port = process.env.PORT || 5000,
-    Credentials = require('./secrets').Credentials || null,
     Twit = require('twit'),
     Bot = require('./lib/tweetsec.js'),
     username = '@howsmypassword';
 
-var TwitterClient = new Twit({
+// TODO: handle ENV vars for production better
 
-  consumer_key: Credentials.consumerKey || ENV['consumerKey'],
+try {
 
-  consumer_secret: Credentials.consumerSecret || ENV['consumerSecret'],
+  var Credentials = require('./secrets').Credentials;
+  
+  var TwitterClient = new Twit({
 
-  access_token: Credentials.accessToken || ENV['accessToken'],
+    consumer_key: Credentials.consumerKey,
 
-  access_token_secret: Credentials.accessTokenSecret || ENV['accessTokenSecret'],
+    consumer_secret: Credentials.consumerSecret,
 
-});
+    access_token: Credentials.accessToken,
+
+    access_token_secret: Credentials.accessTokenSecret,
+
+  });
+
+} catch (err) {
+
+  var TwitterClient = new Twit({
+
+    consumer_key: ENV['consumerKey'],
+
+    consumer_secret: ENV['consumerSecret'],
+
+    access_token: ENV['accessToken'],
+
+    access_token_secret: ENV['accessTokenSecret'],
+
+  });
+
+}
 
 var stream = TwitterClient.stream('statuses/filter', { track: username });
 
