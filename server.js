@@ -62,27 +62,27 @@ stream.on('tweet', function(res) {
 
       var response = Bot.buildResponse(assessment, screenName);
 
-      TwitterClient.post('statuses/update', { status: screenName + ': ' + response }, function(err, data, response) {
-
-        if (err) {
-
-          console.error(err);
-
-        } else {
-
-          console.log('successfully sent!');
-
-        }
-
-      });
+      // TwitterClient.post('statuses/update', { status: screenName + ': ' + response }, function(err, data, response) {
+      // 
+      //   if (err) {
+      // 
+      //     console.error(err);
+      // 
+      //   } else {
+      // 
+      //     console.log('successfully sent!');
+      // 
+      //   }
+      // 
+      // });
 
     }).catch(function(err) {
 
       console.error(err);
 
-      TwitterClient.post('statuses/update', { status: screenName + ':' + 'try again. What do you think I am, Einstein?' }, function(err, data, response) {
-
-      });
+      // TwitterClient.post('statuses/update', { status: screenName + ':' + 'try again. What do you think I am, Einstein?' }, function(err, data, response) {
+      // 
+      // });
 
     });
 
