@@ -2,20 +2,20 @@ var express = require('express'),
     path = require('path'),
     app = express(),
     port = process.env.PORT || 5000,
-    Credentials = require('./secrets').Credentials,
+    Credentials = require('./secrets').Credentials || null,
     Twit = require('twit'),
     Bot = require('./lib/tweetsec.js'),
     username = '@howsmypassword';
 
 var TwitterClient = new Twit({
 
-  consumer_key: Credentials.consumerKey,
+  consumer_key: Credentials.consumerKey || ENV['consumerKey'],
 
-  consumer_secret: Credentials.consumerSecret,
+  consumer_secret: Credentials.consumerSecret || ENV['consumerSecret'],
 
-  access_token: Credentials.accessToken,
+  access_token: Credentials.accessToken || ENV['accessToken'],
 
-  access_token_secret: Credentials.accessTokenSecret,
+  access_token_secret: Credentials.accessTokenSecret || ENV['accessTokenSecret'],
 
 });
 
