@@ -21,6 +21,7 @@ Tweet at @howsmypassword to check your password strength!
 * `npm install` to install node packages
 * `npm install -g nodemon` to install reloading node server
 * `npm start` to start nodemon server
+* wait for a status of `connected` to appear in the terminal 
 * setup a twitter development account and get OAuth credentials 
 * create a `./secrets.js` file:
 
@@ -32,6 +33,19 @@ exports.Credentials = {
   accessTokenSecret: 'TOKEN SECRET,
 };
 ``
+
+### Troubleshooting
+
+#### Bot never responds to me!
+* Make sure that you have a Twitter Development Account, App and OAuth established
+* Make sure credentials are correctly added as shown above
+* Check terminal for status of `connected`. If it's `reconnecting...` then wait or just restart the server by `nodemon server.js`
+
+#### Bot responds with ain't never head of that password
+* Try again, sometimes it doesn't go through because of an unforseen error (promises not resolved, etc.)
+
+#### Bot doesn't catch English word
+* I know, it's a work in progress and to do it would make it significantly slower
 
 ### Technologies Used
 
