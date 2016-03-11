@@ -11,34 +11,24 @@ var express = require('express'),
 try {
 
   var Credentials = require('./secrets').Credentials;
-  
-  var TwitterClient = new Twit({
-
-    consumer_key: Credentials.consumerKey,
-
-    consumer_secret: Credentials.consumerSecret,
-
-    access_token: Credentials.accessToken,
-
-    access_token_secret: Credentials.accessTokenSecret,
-
-  });
 
 } catch (err) {
 
-  var TwitterClient = new Twit({
-
-    consumer_key: ENV['consumerKey'],
-
-    consumer_secret: ENV['consumerSecret'],
-
-    access_token: ENV['accessToken'],
-
-    access_token_secret: ENV['accessTokenSecret'],
-
-  });
+  var Credentials = process.env;
 
 }
+
+var TwitterClient = new Twit({
+
+  consumer_key: Credentials.consumerKey,
+
+  consumer_secret: Credentials.consumerSecret,
+
+  access_token: Credentials.accessToken,
+
+  access_token_secret: Credentials.accessTokenSecret,
+
+});
 
 var stream = TwitterClient.stream('statuses/filter', { track: username });
 
